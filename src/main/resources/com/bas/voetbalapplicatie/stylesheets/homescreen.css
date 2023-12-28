@@ -1,0 +1,84 @@
+/* Pas 'Oswald' lettertype toe op alle elementen */
+* {
+    -fx-font-family: 'Oswald', sans-serif;
+}
+
+/* Stijl voor het hoofdelement met ID 'root' */
+#root {
+    -fx-background-color: #b5b5b5;
+}
+
+/* Stijl voor het menu met ID 'vMenu' */
+#vMenu {
+    -fx-pref-width: 800;
+    -fx-pref-height: 600;
+}
+
+/* Stijl voor de toepassingsnaam met ID 'applicatieNaam' */
+#applicatieNaam {
+    -fx-pref-width: 800;
+    -fx-pref-height: 250;
+    -fx-font-size: 50;
+    -fx-font-weight: BOLD;
+    -fx-padding: 20;
+    -fx-alignment: bottom-center; /* Uitlijnen naar het onderste midden */
+}
+
+/* Stijl voor de sectie met knoppen met ID 'buttons' */
+#buttons {
+    -fx-alignment: center;
+    -fx-pref-height: 330;
+}
+
+/* Stijl voor de 'alleClubsButton' */
+#alleClubsButton {
+    -fx-font-size: 30;
+    -fx-text-fill: black;
+    -fx-background-color: #f36c21;
+    -fx-border-color: black;
+    -fx-border-radius: 30;
+    -fx-background-radius: 40;
+    -fx-border-width: 3;
+}
+
+/* Hover-stijl voor 'alleClubsButton' */
+#alleClubsButton:hover {
+    -fx-font-size: 30;
+    -fx-text-fill: #f36c21;
+    -fx-background-color: black;
+    -fx-border-color: #f36c21;
+    -fx-border-radius: 30;
+    -fx-background-radius: 40;
+    -fx-border-width: 3;
+}
+
+/* Stijl voor 'alleSpelersButton' */
+#alleSpelersButton {
+    -fx-font-size: 30;
+    -fx-text-fill: black;
+    -fx-background-color: #f36c21;
+    -fx-border-color: black;
+    -fx-border-radius: 30;
+    -fx-background-radius: 40;
+    -fx-border-width: 3;
+}
+
+/* Hover-stijl voor 'alleSpelersButton' */
+#alleSpelersButton:hover {
+    -fx-font-size: 30;
+    -fx-text-fill: #f36c21;
+    -fx-background-color: black;
+    -fx-border-color: #f36c21;
+    -fx-border-radius: 30;
+    -fx-background-radius: 40;
+    -fx-border-width: 3;
+}
+
+/* Stijl voor 'copyrightText' */
+#copyrightText {
+    -fx-text-fill: black;
+    -fx-font-size: 22;
+    -fx-pref-width: 800;
+    -fx-alignment: center; /* Uitlijnen van tekst naar het midden */
+    -fx-padding: 20;
+}
