@@ -58,7 +58,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.bas.voetbalapplicatie/com.bas.voetbalapplicatie.Homescreen</mainClass>
+              <mainClass>com.bas.voetbalapplicatie/com.bas.voetbalapplicatie.Application</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
