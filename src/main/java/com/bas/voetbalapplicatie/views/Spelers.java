@@ -13,6 +13,7 @@ public class Spelers {
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.setTitle("Alle spelers");
         stage.show();
 

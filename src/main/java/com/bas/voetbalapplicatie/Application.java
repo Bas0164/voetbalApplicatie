@@ -1,6 +1,7 @@
 package com.bas.voetbalapplicatie;
 import com.bas.voetbalapplicatie.views.HomeScreen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Voetbal Applicatie");
         stage.setScene(homeScreen.getScene());
         stage.setResizable(false);
+
         stage.show();
     }
 

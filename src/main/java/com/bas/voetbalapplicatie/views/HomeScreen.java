@@ -2,13 +2,10 @@ package com.bas.voetbalapplicatie.views;
 
 import com.bas.voetbalapplicatie.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 public class HomeScreen {
@@ -41,15 +38,21 @@ public class HomeScreen {
         // Knop voor alle clubs
         Button alleClubsButton = new Button("Alle clubs");
         alleClubsButton.setId("alleClubsButton");
-        alleClubsButton.setOnMouseClicked(e -> {
+        alleClubsButton.setOnAction(e -> {
             Clubs ac = new Clubs();
+        });
+        alleClubsButton.setOnMouseEntered(event -> {
+            alleClubsButton.setCursor(Cursor.HAND);
         });
 
         // Knop voor alle spelers
         Button alleSpelersButton = new Button("Alle spelers");
         alleSpelersButton.setId("alleSpelersButton");
-        alleSpelersButton.setOnMouseClicked(e -> {
+        alleSpelersButton.setOnAction(e -> {
             Spelers as = new Spelers();
+        });
+        alleSpelersButton.setOnMouseEntered(event -> {
+            alleSpelersButton.setCursor(Cursor.HAND);
         });
 
         // Label met copyrightinformatie

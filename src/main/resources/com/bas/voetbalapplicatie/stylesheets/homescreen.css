@@ -5,7 +5,7 @@
 
 /* Stijl voor het hoofdelement met ID 'root' */
 #root {
-    -fx-background-color: #b5b5b5;
+    -fx-background-color: #b5b5b5; /* Achtergrondkleur van de root (hoofd) van de scene */
 }
 
 /* Stijl voor het menu met ID 'vMenu' */
@@ -17,9 +17,9 @@
 /* Stijl voor de toepassingsnaam met ID 'applicatieNaam' */
 #applicatieNaam {
     -fx-pref-width: 800;
-    -fx-pref-height: 250;
-    -fx-font-size: 50;
-    -fx-font-weight: BOLD;
+    -fx-pref-height: 300;
+    -fx-font-size: 60;
+    -fx-font-weight: BOLD; /* Vetgedrukte tekst */
     -fx-padding: 20;
     -fx-alignment: bottom-center; /* Uitlijnen naar het onderste midden */
 }
@@ -34,49 +34,49 @@
 #alleClubsButton {
     -fx-font-size: 30;
     -fx-text-fill: black;
-    -fx-background-color: #f36c21;
-    -fx-border-color: black;
-    -fx-border-radius: 30;
-    -fx-background-radius: 40;
-    -fx-border-width: 3;
+    -fx-background-color: #f36c21; /* Achtergrondkleur van de knop */
+    -fx-border-color: black; /* Randkleur */
+    -fx-border-radius: 30; /* Randradius */
+    -fx-background-radius: 40; /* Achtergrondradius */
+    -fx-border-width: 3; /* Randdikte */
 }
 
 /* Hover-stijl voor 'alleClubsButton' */
 #alleClubsButton:hover {
     -fx-font-size: 30;
-    -fx-text-fill: #f36c21;
-    -fx-background-color: black;
-    -fx-border-color: #f36c21;
-    -fx-border-radius: 30;
-    -fx-background-radius: 40;
-    -fx-border-width: 3;
+    -fx-text-fill: #f36c21; /* Tekstkleur bij hover */
+    -fx-background-color: black; /* Achtergrondkleur bij hover */
+    -fx-border-color: #f36c21; /* Randkleur bij hover */
+    -fx-border-radius: 30; /* Randradius bij hover */
+    -fx-background-radius: 40; /* Achtergrondradius bij hover */
+    -fx-border-width: 3; /* Randdikte bij hover */
 }
 
 /* Stijl voor 'alleSpelersButton' */
 #alleSpelersButton {
     -fx-font-size: 30;
     -fx-text-fill: black;
-    -fx-background-color: #f36c21;
-    -fx-border-color: black;
-    -fx-border-radius: 30;
-    -fx-background-radius: 40;
-    -fx-border-width: 3;
+    -fx-background-color: #f36c21; /* Achtergrondkleur van de knop */
+    -fx-border-color: black; /* Randkleur */
+    -fx-border-radius: 30; /* Randradius */
+    -fx-background-radius: 40; /* Achtergrondradius */
+    -fx-border-width: 3; /* Randdikte */
 }
 
 /* Hover-stijl voor 'alleSpelersButton' */
 #alleSpelersButton:hover {
     -fx-font-size: 30;
-    -fx-text-fill: #f36c21;
-    -fx-background-color: black;
-    -fx-border-color: #f36c21;
-    -fx-border-radius: 30;
-    -fx-background-radius: 40;
-    -fx-border-width: 3;
+    -fx-text-fill: #f36c21; /* Tekstkleur bij hover */
+    -fx-background-color: black; /* Achtergrondkleur bij hover */
+    -fx-border-color: #f36c21; /* Randkleur bij hover */
+    -fx-border-radius: 30; /* Randradius bij hover */
+    -fx-background-radius: 40; /* Achtergrondradius bij hover */
+    -fx-border-width: 3; /* Randdikte bij hover */
 }
 
 /* Stijl voor 'copyrightText' */
 #copyrightText {
-    -fx-text-fill: black;
+    -fx-text-fill: black; /* Tekstkleur */
     -fx-font-size: 22;
     -fx-pref-width: 800;
     -fx-alignment: center; /* Uitlijnen van tekst naar het midden */
