@@ -1,7 +1,5 @@
 package com.bas.voetbalapplicatie.classes;
 
-import javafx.scene.image.Image;
-
 import java.sql.Blob;
 
 public class Club {
