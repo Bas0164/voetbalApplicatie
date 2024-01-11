@@ -105,6 +105,7 @@ public class ClubsToevoegen {
         terugKnop.setId("terugKnop");
         terugKnop.setOnAction(e -> {
             Clubs ac = new Clubs();
+            stage.close();
         });
         terugKnop.setOnMouseEntered(event -> {
             terugKnop.setCursor(Cursor.HAND);

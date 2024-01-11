@@ -8,16 +8,16 @@ import java.io.ByteArrayInputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 
-public class TabelFoto extends TableCell<Club, Blob> {
+public class TabelSpelerFoto extends TableCell<Speler, Blob> {
 
     // ImageView om de afbeelding weer te geven
     private final ImageView imageView = new ImageView();
 
     // Gewenste breedte van de afbeelding
-    private final int IMAGE_WIDTH = 50; // Pas de breedte van de afbeelding naar wens aan
+    private final int IMAGE_WIDTH = 75; // Pas de breedte van de afbeelding naar wens aan
 
     // Gewenste hoogte van de afbeelding
-    private final int IMAGE_HEIGHT = 50; // Pas de hoogte van de afbeelding naar wens aan
+    private final int IMAGE_HEIGHT = 75; // Pas de hoogte van de afbeelding naar wens aan
 
     @Override
     protected void updateItem(Blob blob, boolean empty) {

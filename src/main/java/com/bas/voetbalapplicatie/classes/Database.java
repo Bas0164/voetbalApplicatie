@@ -128,6 +128,48 @@ public class Database {
         }
     }
 
+
+
     //---------------------------Spelers-----------------------------------//
+
+    public ArrayList<Speler> laatSpelersZien() {
+        // SQL-query om alle kolommen uit de 'speler'-tabel te selecteren
+        String query = "SELECT speler.*, club.clubNaam, positie.positie FROM speler INNER JOIN club ON speler.club = club.clubID INNER JOIN positie ON speler.positie = positie.positieID;";
+
+        // ArrayList om Speler-objecten op te slaan die uit de database zijn opgehaald
+        ArrayList<Speler> lijstMetSpelers = new ArrayList<>();
+
+        try {
+            // Maak een Statement-object aan voor het uitvoeren van SQL-query's
+            Statement stm = this.conn.createStatement();
+
+            // Voer de SQL-query uit en verkrijg het resultaat
+            stm.execute(query);
+            ResultSet rs = stm.getResultSet();
+
+            while (rs.next()) {
+                // Haal waarden op uit het resultaat voor elke speler
+                int id = rs.getInt("spelerID");
+                String spelerNaam =  rs.getString("spelerNaam");
+                int rugnummer = rs.getInt("rugnummer");
+                String nationaliteit =  rs.getString("nationaliteit");
+                int aantalGoals = rs.getInt("aantalGoals");
+                int aantalAssists = rs.getInt("aantalAssists");
+                Blob profielfoto =  rs.getBlob("profielfoto");
+                String iclub = rs.getString("club.clubNaam");
+                String ipositie = rs.getString("positie.positie");
+
+                // Maak een nieuw Speler-object aan met de opgehaalde waarden
+                Speler speler = new Speler(id, spelerNaam, rugnummer, nationaliteit, aantalGoals, aantalAssists, profielfoto, iclub, ipositie);
+
+                // Voeg het Speler-object toe aan de ArrayList
+                lijstMetSpelers.add(speler);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Retourneer de ArrayList met Speler-objecten
+        return lijstMetSpelers;
+    }
 
 }

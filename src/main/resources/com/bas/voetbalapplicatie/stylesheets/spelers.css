@@ -2,11 +2,11 @@
     -fx-background-color: #b5b5b5; /* Achtergrondkleur van de root (hoofd) van de scene */
 }
 
-#clubsTable {
+#spelersTable {
     -fx-background-color: transparent; /* Achtergrond van de tabel transparant maken */
     -fx-font-weight: BOLD; /* Vetgedrukte tekst in de tabel */
-    -fx-pref-width: 800; /* Voorkeursbreedte van de tabel */
-    -fx-pref-height: 500; /* Voorkeurshoogte van de tabel */
+    -fx-pref-width: 1440; /* Voorkeursbreedte van de tabel */
+    -fx-pref-height: 700; /* Voorkeurshoogte van de tabel */
 }
 
 .table-view .scroll-bar:horizontal {
@@ -17,16 +17,16 @@
     -fx-font-size:20px; /* Lettergrootte van de tabelcellen */
 }
 
-#clubsTable .table-column {
+#spelersTable .table-column {
     -fx-alignment: CENTER;
 }
 
 #buttons {
     -fx-alignment: center; /* Uitlijning van knoppen naar het midden */
-    -fx-pref-width: 800; /* Voorkeursbreedte van de knoppen */
+    -fx-pref-width: 1440; /* Voorkeursbreedte van de knoppen */
 }
 
-#clubToevoegen {
+#spelerToevoegen {
     -fx-font-size: 30;
     -fx-text-fill: black; /* Tekstkleur */
     -fx-background-color: #f36c21; /* Achtergrondkleur */
@@ -36,7 +36,7 @@
     -fx-border-width: 3; /* Randdikte */
 }
 
-#clubToevoegen:hover {
+#spelerToevoegen:hover {
     -fx-font-size: 30;
     -fx-text-fill: #f36c21; /* Tekstkleur bij hover */
     -fx-background-color: black; /* Achtergrondkleur bij hover */

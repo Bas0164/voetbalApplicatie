@@ -3,7 +3,7 @@ package com.bas.voetbalapplicatie.views;
 import com.bas.voetbalapplicatie.Application;
 import com.bas.voetbalapplicatie.classes.Club;
 import com.bas.voetbalapplicatie.classes.Database;
-import com.bas.voetbalapplicatie.classes.TabelFoto;
+import com.bas.voetbalapplicatie.classes.TabelClubLogo;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
 import java.sql.Blob;
 
 public class Clubs {
@@ -55,7 +54,7 @@ public class Clubs {
 
         TableColumn<Club, Blob> col1 = new TableColumn<>("Logo");
         col1.setCellValueFactory(new PropertyValueFactory<>("logo"));
-        col1.setCellFactory(column -> new TabelFoto());
+        col1.setCellFactory(column -> new TabelClubLogo());
         col1.setPrefWidth(200);
 
         TableColumn<Club, String> col2 = new TableColumn<>("Stadion");
@@ -72,7 +71,8 @@ public class Clubs {
         clubsTable.setOnMouseClicked(e -> {
             Club c = (Club) clubsTable.getSelectionModel().getSelectedItem();
             // Openen nieuw scherm
-            ClubsBewerken mv = new ClubsBewerken(c);
+            ClubsBewerken cb = new ClubsBewerken(c);
+            stage.close();
         });
 
         // Creëer HBox voor knoppen
@@ -86,6 +86,7 @@ public class Clubs {
         clubToevoegen.setOnAction(e -> {
             // Wanneer de knop wordt geklikt, maak een nieuw venster om een club toe te voegen
             ClubsToevoegen ct = new ClubsToevoegen();
+            stage.close();
         });
         clubToevoegen.setOnMouseEntered(event -> {
             clubToevoegen.setCursor(Cursor.HAND);
@@ -95,8 +96,7 @@ public class Clubs {
         Button terugKnop = new Button("Terug");
         terugKnop.setId("terugKnop");
         terugKnop.setOnAction(e -> {
-            HomeScreen hs = new HomeScreen();
-            stage.setScene(hs.getScene());
+            stage.close();
         });
 
         terugKnop.setOnMouseEntered(event -> {

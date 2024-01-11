@@ -1,6 +1,7 @@
 package com.bas.voetbalapplicatie.views;
 
 import com.bas.voetbalapplicatie.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -31,7 +32,7 @@ public class HomeScreen {
         applicatieNaam.setId("applicatieNaam");
 
         // Horizontale box (HBox) voor knoppen
-        HBox buttons = new HBox(100);
+        HBox buttons = new HBox(50);
         buttons.setId("buttons");
         HBox.setMargin(buttons, new Insets(100, 0, 0, 0)); // Ruimte boven de knoppen
 
@@ -43,6 +44,16 @@ public class HomeScreen {
         });
         alleClubsButton.setOnMouseEntered(event -> {
             alleClubsButton.setCursor(Cursor.HAND);
+        });
+
+        Button sluitApplicatie = new Button();
+        sluitApplicatie.setId("sluitApplicatie");
+        sluitApplicatie.setText("Afsluiten");
+        sluitApplicatie.setOnAction(e -> {
+            Platform.exit();
+        });
+        sluitApplicatie.setOnMouseEntered(event -> {
+            sluitApplicatie.setCursor(Cursor.HAND);
         });
 
         // Knop voor alle spelers
@@ -64,7 +75,7 @@ public class HomeScreen {
         vMenu.getChildren().add(applicatieNaam);
         vMenu.getChildren().add(buttons);
         vMenu.getChildren().add(copyrightText);
-        buttons.getChildren().addAll(alleSpelersButton, alleClubsButton);
+        buttons.getChildren().addAll(alleSpelersButton, sluitApplicatie, alleClubsButton);
     }
 
     // Methode om de JavaFX Scene op te halen
