@@ -76,14 +76,14 @@
 
 /* Stijl voor 'sluitApplicatie' */
 #sluitApplicatie {
-    -fx-font-size: 30;
-    -fx-text-fill: black;
-    -fx-background-color: red; /* Achtergrondkleur van de knop */
-    -fx-border-color: black; /* Randkleur */
-    -fx-border-radius: 30; /* Randradius */
-    -fx-background-radius: 40; /* Achtergrondradius */
-    -fx-border-width: 3; /* Randdikte */
-}
+     -fx-font-size: 30;
+     -fx-text-fill: black;
+     -fx-background-color: red; /* Achtergrondkleur van de knop */
+     -fx-border-color: black; /* Randkleur */
+     -fx-border-radius: 30; /* Randradius */
+     -fx-background-radius: 40; /* Achtergrondradius */
+     -fx-border-width: 3; /* Randdikte */
+ }
 
 /* Hover-stijl voor 'sluitApplicatie' */
 #sluitApplicatie:hover {

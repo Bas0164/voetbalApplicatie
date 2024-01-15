@@ -52,17 +52,7 @@ public class Speler {
         this.rugnummer = rugnummer;
     }
 
-    public String getNationaliteit() {
-        return nationaliteit;
-    }
-
-    public void setNationaliteit(String nationaliteit) {
-        this.nationaliteit = nationaliteit;
-    }
-
-    public int getAantalGoals() {
-        return aantalGoals;
-    }
+    public int getAantalGoals() { return aantalGoals; }
 
     public void setAantalGoals(int aantalGoals) {
         this.aantalGoals = aantalGoals;
@@ -99,5 +89,9 @@ public class Speler {
     public void setPositie(String positie) {
         this.positie = positie;
     }
+
+    public String getNationaliteit() { return nationaliteit; }
+
+    public void setNationaliteit(String nationaliteit) { this.nationaliteit = nationaliteit; }
 
 }

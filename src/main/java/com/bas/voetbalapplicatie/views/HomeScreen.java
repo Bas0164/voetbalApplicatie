@@ -67,7 +67,7 @@ public class HomeScreen {
         });
 
         // Label met copyrightinformatie
-        Label copyrightText = new Label("Copyright \u00A9 2023 | Deze applicatie is gemaakt door Bas de Bruijn");
+        Label copyrightText = new Label("Copyright \u00A9 2024 | Deze applicatie is gemaakt door Bas de Bruijn");
         copyrightText.setId("copyrightText");
 
         // Voeg de elementen toe aan de hoofdcontainer

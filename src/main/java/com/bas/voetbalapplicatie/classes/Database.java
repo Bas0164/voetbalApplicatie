@@ -134,7 +134,7 @@ public class Database {
 
     public ArrayList<Speler> laatSpelersZien() {
         // SQL-query om alle kolommen uit de 'speler'-tabel te selecteren
-        String query = "SELECT speler.*, club.clubNaam, positie.positie FROM speler INNER JOIN club ON speler.club = club.clubID INNER JOIN positie ON speler.positie = positie.positieID;";
+        String query = "SELECT speler.*, nationaliteit.nationaliteit, club.clubNaam, positie.positie FROM speler INNER JOIN nationaliteit ON speler.nationaliteit = nationaliteit.nationaliteitID INNER JOIN club ON speler.club = club.clubID INNER JOIN positie ON speler.positie = positie.positieID;";
 
         // ArrayList om Speler-objecten op te slaan die uit de database zijn opgehaald
         ArrayList<Speler> lijstMetSpelers = new ArrayList<>();
@@ -152,7 +152,7 @@ public class Database {
                 int id = rs.getInt("spelerID");
                 String spelerNaam =  rs.getString("spelerNaam");
                 int rugnummer = rs.getInt("rugnummer");
-                String nationaliteit =  rs.getString("nationaliteit");
+                String inationaliteit =  rs.getString("nationaliteit.nationaliteit");
                 int aantalGoals = rs.getInt("aantalGoals");
                 int aantalAssists = rs.getInt("aantalAssists");
                 Blob profielfoto =  rs.getBlob("profielfoto");
@@ -160,7 +160,7 @@ public class Database {
                 String ipositie = rs.getString("positie.positie");
 
                 // Maak een nieuw Speler-object aan met de opgehaalde waarden
-                Speler speler = new Speler(id, spelerNaam, rugnummer, nationaliteit, aantalGoals, aantalAssists, profielfoto, iclub, ipositie);
+                Speler speler = new Speler(id, spelerNaam, rugnummer, inationaliteit, aantalGoals, aantalAssists, profielfoto, iclub, ipositie);
 
                 // Voeg het Speler-object toe aan de ArrayList
                 lijstMetSpelers.add(speler);
