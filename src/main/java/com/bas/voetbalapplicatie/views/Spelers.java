@@ -107,7 +107,8 @@ public class Spelers {
         spelerToevoegen.setId("spelerToevoegen");
         spelerToevoegen.setOnAction(e -> {
             // Wanneer de knop wordt geklikt, maak een nieuw venster om een speler toe te voegen
-            ClubsToevoegen ct = new ClubsToevoegen();
+            SpelersToevoegen st = new SpelersToevoegen();
+            stage.close();
         });
         spelerToevoegen.setOnMouseEntered(event -> {
             spelerToevoegen.setCursor(Cursor.HAND);

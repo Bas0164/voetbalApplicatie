@@ -39,11 +39,11 @@ public class ClubsToevoegen {
         scene.getStylesheets().add(Application.class.getResource("fonts/Oswald-Medium.ttf").toString());
 
         HBox clubNaamHbox = new HBox();
-        Label clubNaamLabel = new Label("Clubnaam:"); // Label voor de clubnaam
+        Label clubNaamLabel = new Label("Clubnaam: "); // Label voor de clubnaam
         TextField clubNaam = new TextField(); // Tekstinvoerveld voor de clubnaam
 
         HBox logoHbox = new HBox();
-        Label labelLogo = new Label("Logo:"); // Label voor het logo
+        Label labelLogo = new Label("Logo: "); // Label voor het logo
         Button uploadLogo = new Button("Upload"); // Knop om een afbeelding te uploaden
         uploadLogo.setId("uploadLogo");
         uploadLogo.setOnMouseEntered(event -> {
@@ -66,7 +66,7 @@ public class ClubsToevoegen {
         });
 
         HBox stadionHbox = new HBox();
-        Label stadionLabel = new Label("Stadion:"); // Label voor het stadion
+        Label stadionLabel = new Label("Stadion: "); // Label voor het stadion
         ComboBox<String> stadion = new ComboBox<>(); // Keuzelijst voor stadionnamen
         stadion.setOnMouseEntered(event -> {
             stadion.setCursor(Cursor.HAND);
@@ -112,8 +112,8 @@ public class ClubsToevoegen {
         });
 
         VBox.setMargin(clubNaamHbox, new javafx.geometry.Insets(140, 0, 30, 200));
-        VBox.setMargin(logoHbox, new javafx.geometry.Insets(0, 0, 30, 200));
-        VBox.setMargin(stadionHbox, new javafx.geometry.Insets(0, 0, 120, 200));
+        VBox.setMargin(logoHbox, new javafx.geometry.Insets(0, 0, 30, 245));
+        VBox.setMargin(stadionHbox, new javafx.geometry.Insets(0, 0, 120, 220));
 
         // Elementen toevoegen aan het hoofdlay-outpaneel
         root.getChildren().addAll(clubNaamHbox, logoHbox, stadionHbox, buttons);

@@ -172,4 +172,30 @@ public class Database {
         return lijstMetSpelers;
     }
 
+    public void opslaanSpeler(String spelerNaam, Double rugnummer, String nationaliteit, Double aantalGoals, Double aantalAssists, String profielfoto, String club, String positie) {
+        // SQL-query om een nieuwe speler toe te voegen met verwijzing naar nationaliteit, club en positie via een subquerys
+        String query = "INSERT INTO speler (spelerNaam, rugnummer, nationaliteit, aantalGoals, aantalAssists, profielfoto, club, positie) VALUES (?, ?, (SELECT nationaliteitID FROM nationaliteit WHERE nationaliteit = ?), ?, ?, ?, (SELECT clubID FROM club WHERE clubNaam = ?), (SELECT positieID FROM positie WHERE positie = ?))";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/voetbalApplicatie", "root", "");
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Parameters invullen voor de PreparedStatement
+            preparedStatement.setString(1, spelerNaam); // spelerNaam
+            preparedStatement.setDouble(2, rugnummer); // rugnummer
+            preparedStatement.setString(3, nationaliteit); // nationaliteit
+            preparedStatement.setDouble(4, aantalGoals); // aantalGoals
+            preparedStatement.setDouble(5, aantalAssists); // aantalAssists
+            preparedStatement.setString(6, profielfoto); // profielfoto
+            preparedStatement.setString(7, club); // club
+            preparedStatement.setString(8, positie); // positie
+
+            // De query uitvoeren
+            preparedStatement.executeUpdate();
+            System.out.println("Speler succesvol opgeslagen in de database!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
