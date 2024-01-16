@@ -4,10 +4,7 @@ import com.bas.voetbalapplicatie.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,6 +21,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Base64;
+
 
 public class ClubsBewerken {
 
@@ -85,9 +83,9 @@ public class ClubsBewerken {
             e.printStackTrace();
         }
 
-        VBox.setMargin(clubNaamHbox, new javafx.geometry.Insets(140, 0, 30, 200));
-        VBox.setMargin(logoHbox, new javafx.geometry.Insets(0, 0, 30, 200));
-        VBox.setMargin(stadionHbox, new javafx.geometry.Insets(0, 0, 120, 200));
+        VBox.setMargin(clubNaamHbox, new Insets(140, 0, 30, 200));
+        VBox.setMargin(logoHbox, new Insets(0, 0, 30, 200));
+        VBox.setMargin(stadionHbox, new Insets(0, 0, 120, 200));
 
         HBox buttons = new HBox(100);
         buttons.setId("buttons");
@@ -95,18 +93,39 @@ public class ClubsBewerken {
 
         Button btnDelete = new Button("Verwijder");
         btnDelete.setId("btnDelete");
-        Database db = new Database();
+
         btnDelete.setOnAction(e -> {
-            db.verwijderClub(c);
-            stage.close();
+            // Toon een bevestigingsdialoog
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Bevestiging");
+            alert.setHeaderText("Weet je zeker dat je deze club wilt verwijderen?");
+            alert.setContentText("Wanneer je de club verwijderd zullen ook alle spelers van die club verwijderd worden");
+
+            // Voeg knoppen toe aan de dialoog
+            ButtonType buttonTypeYes = new ButtonType("Ja");
+            ButtonType buttonTypeNo = new ButtonType("Nee");
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+            // Wacht op gebruikersinvoer
+            alert.showAndWait().ifPresent(buttonType -> {
+                if (buttonType == buttonTypeYes) {
+                    // Gebruiker heeft "Ja" gekozen, verwijder de club
+                    Database db = new Database();
+                    db.verwijderClub(c);
+                    stage.close();
+                } else {
+                    // Gebruiker heeft "Nee" gekozen, doe niets
+                }
+            });
         });
 
         Button btnWijzig = new Button("Wijzig");
         btnWijzig.setId("btnWijzig");
         btnWijzig.setOnAction(e -> {
             c.setClubNaam(clubNaam.getText());
-            //v.setPlaats(txtPlaats.getText());
             c.setStadion(stadion.getValue());
+            Database db = new Database();
             db.bewerkClub(c);
             stage.close();
         });
