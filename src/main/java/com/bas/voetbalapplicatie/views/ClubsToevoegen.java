@@ -91,11 +91,19 @@ public class ClubsToevoegen {
         Button btnOpslaan = new Button("Opslaan"); // Knop om de clubgegevens op te slaan
         btnOpslaan.setId("btnOpslaan");
         btnOpslaan.setOnAction(e -> {
+            if (!clubNaam.getText().isEmpty() && encodedString != null && stadion.getValue() != null) {
             String SclubNaam = clubNaam.getText(); // Clubnaam ophalen
             String Slogo = encodedString; // Gecodeerde afbeeldingsstring ophalen
             String selectedStadionNaam = stadion.getValue(); // Geselecteerde stadionnaam ophalen
             db.opslaanClub(SclubNaam, Slogo, selectedStadionNaam); // Opslaan van clubgegevens
             stage.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText((String)null);
+            alert.setContentText("Vul alle velden in!");
+            alert.showAndWait();
+        }
         });
         btnOpslaan.setOnMouseEntered(event -> {
             btnOpslaan.setCursor(Cursor.HAND);

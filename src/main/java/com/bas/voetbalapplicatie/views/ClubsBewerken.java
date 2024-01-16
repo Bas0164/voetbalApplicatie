@@ -123,11 +123,19 @@ public class ClubsBewerken {
         Button btnWijzig = new Button("Wijzig");
         btnWijzig.setId("btnWijzig");
         btnWijzig.setOnAction(e -> {
+            if (!clubNaam.getText().isEmpty() && encodedString != null && stadion.getValue() != null) {
             c.setClubNaam(clubNaam.getText());
             c.setStadion(stadion.getValue());
             Database db = new Database();
             db.bewerkClub(c);
             stage.close();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText((String) null);
+                alert.setContentText("Vul alle velden in!");
+                alert.showAndWait();
+            }
         });
 
         Button terugKnop = new Button("Terug");

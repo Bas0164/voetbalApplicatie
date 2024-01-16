@@ -208,7 +208,8 @@ public class SpelersBewerken {
     Button btnWijzig = new Button("Wijzig");
         btnWijzig.setId("btnWijzig");
         btnWijzig.setOnAction(e -> {
-        s.setSpelerNaam(spelerNaam.getText());
+            if (!spelerNaam.getText().isEmpty() && !rugnummer.getText().isEmpty() && nationaliteit.getValue() != null && !aantalGoals.getText().isEmpty() && !aantalAssists.getText().isEmpty() && encodedString != null && club.getValue() != null && positie.getValue() != null) {
+                s.setSpelerNaam(spelerNaam.getText());
             try {
                 int rugnummerValue = Integer.parseInt(rugnummer.getText());
                 s.setRugnummer(rugnummerValue);
@@ -235,6 +236,13 @@ public class SpelersBewerken {
         Database db = new Database();
         db.bewerkSpeler(s);
         stage.close();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText((String)null);
+                alert.setContentText("Vul alle velden in!");
+                alert.showAndWait();
+            }
     });
 
     Button terugKnop = new Button("Terug");

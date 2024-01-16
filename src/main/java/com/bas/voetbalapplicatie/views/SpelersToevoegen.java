@@ -5,10 +5,7 @@ import com.bas.voetbalapplicatie.classes.Database;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -144,6 +141,7 @@ public class SpelersToevoegen {
         Button btnOpslaan = new Button("Opslaan"); // Knop om de spelergegevens op te slaan
         btnOpslaan.setId("btnOpslaan");
         btnOpslaan.setOnAction(e -> {
+            if (!spelerNaam.getText().isEmpty() && !rugnummer.getText().isEmpty() && nationaliteit.getValue() != null && !aantalGoals.getText().isEmpty() && !aantalAssists.getText().isEmpty() && encodedString != null && club.getValue() != null && positie.getValue() != null) {
             String SspelerNaam = spelerNaam.getText(); // spelernaam ophalen
             Integer Irugnummer = Integer.parseInt(rugnummer.getText()); //rugnummer ophalen
             String Snationaliteit = nationaliteit.getValue(); // Geselecteerde nationaliteit ophalen
@@ -154,6 +152,13 @@ public class SpelersToevoegen {
             String Spositie = positie.getValue(); // Geselecteerde positie ophalen
             db.opslaanSpeler(SspelerNaam, Irugnummer, Snationaliteit, IaantalGoals, IaantalAssists, Sprofielfoto, Sclub, Spositie); // Opslaan van spelergegevens
             stage.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText((String)null);
+            alert.setContentText("Vul alle velden in!");
+            alert.showAndWait();
+        }
         });
         btnOpslaan.setOnMouseEntered(event -> {
             btnOpslaan.setCursor(Cursor.HAND);
