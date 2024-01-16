@@ -133,7 +133,6 @@ public class ClubsBewerken {
         Button terugKnop = new Button("Terug");
         terugKnop.setId("terugKnop");
         terugKnop.setOnAction(e -> {
-            Clubs ac = new Clubs();
             stage.close();
         });
         terugKnop.setOnMouseEntered(event -> {

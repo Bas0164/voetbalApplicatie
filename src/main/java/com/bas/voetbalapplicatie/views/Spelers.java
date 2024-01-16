@@ -90,12 +90,12 @@ public class Spelers {
         // Vul de TableView met clubgegevens uit de database
         spelersTable.getItems().addAll(db.laatSpelersZien());
 
-        // Open een nieuw scherm wanneer er op een speler wordt geklikt
-//        spelersTable.setOnMouseClicked(e -> {
-//            Speler s = (Speler) spelersTable.getSelectionModel().getSelectedItem();
-//            // Openen nieuw scherm
-//            SpelersBewerken sb = new SpelersBewerken(s);
-//        });
+        //Open een nieuw scherm wanneer er op een speler wordt geklikt
+        spelersTable.setOnMouseClicked(e -> {
+            Speler s = (Speler) spelersTable.getSelectionModel().getSelectedItem();
+            // Openen nieuw scherm
+            SpelersBewerken sb = new SpelersBewerken(s);
+        });
 
         // Creëer HBox voor knoppen
         HBox buttons = new HBox(100);

@@ -1,0 +1,82 @@
+#root {
+    -fx-background-color: #b5b5b5; /* Achtergrondkleur van de root (hoofd) van de scene */
+    -fx-font-weight: BOLD; /* Vetgedrukte tekst */
+    -fx-font-size: 20; /* Lettergrootte */
+}
+
+#buttons {
+    -fx-alignment: center; /* Uitlijning van knoppen naar het midden */
+    -fx-pref-width: 800; /* Voorkeursbreedte van de knoppen */
+}
+
+#uploadProfielfoto {
+    -fx-font-size: 20;
+    -fx-text-fill: black; /* Tekstkleur */
+    -fx-background-color: gray; /* Achtergrondkleur */
+    -fx-border-color: black; /* Randkleur */
+    -fx-border-radius: 30; /* Randradius */
+    -fx-background-radius: 40; /* Achtergrondradius */
+    -fx-border-width: 3; /* Randdikte */
+}
+
+#btnWijzig {
+    -fx-font-size: 30;
+    -fx-text-fill: black; /* Tekstkleur */
+    -fx-background-color: #f36c21; /* Achtergrondkleur */
+    -fx-border-color: black; /* Randkleur */
+    -fx-border-radius: 30; /* Randradius */
+    -fx-background-radius: 40; /* Achtergrondradius */
+    -fx-border-width: 3; /* Randdikte */
+}
+
+#btnWijzig:hover {
+    -fx-font-size: 30;
+    -fx-text-fill: #f36c21; /* Tekstkleur bij hover */
+    -fx-background-color: black; /* Achtergrondkleur bij hover */
+    -fx-border-color: #f36c21; /* Randkleur bij hover */
+    -fx-border-radius: 30; /* Randradius bij hover */
+    -fx-background-radius: 40; /* Achtergrondradius bij hover */
+    -fx-border-width: 3; /* Randdikte bij hover */
+}
+
+#btnDelete {
+    -fx-alignment: center; /* Uitlijnen van tekst naar het midden */
+    -fx-font-size: 30;
+    -fx-text-fill: black; /* Tekstkleur */
+    -fx-background-color: red; /* Achtergrondkleur */
+    -fx-border-color: black; /* Randkleur */
+    -fx-border-radius: 30; /* Randradius */
+    -fx-background-radius: 40; /* Achtergrondradius */
+    -fx-border-width: 3; /* Randdikte */
+}
+
+#btnDelete:hover {
+    -fx-font-size: 30;
+    -fx-text-fill: red; /* Tekstkleur bij hover */
+    -fx-background-color: black; /* Achtergrondkleur bij hover */
+    -fx-border-color: red; /* Randkleur bij hover */
+    -fx-border-radius: 30; /* Randradius bij hover */
+    -fx-background-radius: 40; /* Achtergrondradius bij hover */
+    -fx-border-width: 3; /* Randdikte bij hover */
+}
+
+#terugKnop {
+    -fx-alignment: center; /* Uitlijnen van tekst naar het midden */
+    -fx-font-size: 30;
+    -fx-text-fill: black; /* Tekstkleur */
+    -fx-background-color: red; /* Achtergrondkleur */
+    -fx-border-color: black; /* Randkleur */
+    -fx-border-radius: 30; /* Randradius */
+    -fx-background-radius: 40; /* Achtergrondradius */
+    -fx-border-width: 3; /* Randdikte */
+}
+
+#terugKnop:hover {
+    -fx-font-size: 30;
+    -fx-text-fill: red; /* Tekstkleur bij hover */
+    -fx-background-color: black; /* Achtergrondkleur bij hover */
+    -fx-border-color: red; /* Randkleur bij hover */
+    -fx-border-radius: 30; /* Randradius bij hover */
+    -fx-background-radius: 40; /* Achtergrondradius bij hover */
+    -fx-border-width: 3; /* Randdikte bij hover */
+}
