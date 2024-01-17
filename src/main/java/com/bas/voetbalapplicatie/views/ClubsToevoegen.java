@@ -6,11 +6,15 @@ import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -22,6 +26,8 @@ import java.util.Base64;
 public class ClubsToevoegen {
 
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
+    ImageView imageView; // ImageView om de afbeelding weer te geven
+
 
     public ClubsToevoegen() {
         Database db = new Database(); // Instantie van de Database-klasse
@@ -44,11 +50,16 @@ public class ClubsToevoegen {
 
         HBox logoHbox = new HBox();
         Label labelLogo = new Label("Logo: "); // Label voor het logo
-        Button uploadLogo = new Button("Upload"); // Knop om een afbeelding te uploaden
+        Button uploadLogo = new Button("Upload");
         uploadLogo.setId("uploadLogo");
         uploadLogo.setOnMouseEntered(event -> {
             uploadLogo.setCursor(Cursor.HAND);
         });
+
+        // Voeg een ImageView toe om de afbeelding weer te geven
+        imageView = new ImageView();
+        imageView.setFitWidth(75); // Pas aan zoals nodig
+        imageView.setFitHeight(75); // Pas aan zoals nodig
 
         uploadLogo.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser(); // Dialoogvenster voor bestandsselectie
@@ -58,8 +69,20 @@ public class ClubsToevoegen {
             );
             Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
             try {
-                byte[] fileContent = Files.readAllBytes(selectedFile);
-                encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
+                String fileExtension = selectedFile.toString().toLowerCase();
+                if (fileExtension.endsWith(".png") || fileExtension.endsWith(".jpg") || fileExtension.endsWith(".jpeg")) {
+                    byte[] fileContent = Files.readAllBytes(selectedFile);
+                    encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
+                    // Toon de afbeelding in de ImageView
+                    Image image = new Image(new ByteArrayInputStream(Base64.getDecoder().decode(encodedString)));
+                    imageView.setImage(image);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ongeldig bestandsformaat. Alleen PNG, JPG en JPEG zijn toegestaan.");
+                    alert.showAndWait();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -126,7 +149,7 @@ public class ClubsToevoegen {
         // Elementen toevoegen aan het hoofdlay-outpaneel
         root.getChildren().addAll(clubNaamHbox, logoHbox, stadionHbox, buttons);
         clubNaamHbox.getChildren().addAll(clubNaamLabel, clubNaam);
-        logoHbox.getChildren().addAll(labelLogo, uploadLogo);
+        logoHbox.getChildren().addAll(labelLogo, uploadLogo, imageView);
         stadionHbox.getChildren().addAll(stadionLabel, stadion);
         buttons.getChildren().addAll(btnOpslaan, terugKnop);
     }

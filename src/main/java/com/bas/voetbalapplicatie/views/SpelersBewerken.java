@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -20,10 +21,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Base64;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class SpelersBewerken {
 
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
+    ImageView profielfotoImageView; // Voeg ImageView toe voor de profielfoto
 
     public SpelersBewerken(Speler s) {
 
@@ -80,6 +84,11 @@ public class SpelersBewerken {
         TextField aantalAssists = new TextField(); // Tekstinvoerveld voor het aantal assists
         aantalAssists.setText(String.valueOf(s.getAantalAssists())); // Converteer naar String voordat je instelt
 
+        // Voeg een ImageView toe
+        profielfotoImageView = new ImageView();
+        profielfotoImageView.setFitHeight(75); // Pas de hoogte aan zoals gewenst
+        profielfotoImageView.setFitWidth(75); // Pas de breedte aan zoals gewenst
+
         HBox profielfotoHbox = new HBox();
         Label labelProfielfoto = new Label("Profielfoto: "); // Label voor de profielfoto
         Button uploadProfielfoto = new Button("Upload"); // Knop om een afbeelding te uploaden
@@ -98,6 +107,11 @@ public class SpelersBewerken {
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
+
+                // Laad de afbeelding in de ImageView
+                Image profielfotoImage = new Image("data:image/png;base64," + encodedString);
+                profielfotoImageView.setImage(profielfotoImage);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -260,7 +274,7 @@ public class SpelersBewerken {
         nationaliteitHbox.getChildren().addAll(nationaliteitLabel, nationaliteit);
         aantalGoalsHbox.getChildren().addAll(aantalGoalsLabel, aantalGoals);
         aantalAssistsHbox.getChildren().addAll(aantalAssistsLabel, aantalAssists);
-        profielfotoHbox.getChildren().addAll(labelProfielfoto, uploadProfielfoto);
+        profielfotoHbox.getChildren().addAll(labelProfielfoto, uploadProfielfoto, profielfotoImageView);
         clubHbox.getChildren().addAll(clubLabel, club);
         positieHbox.getChildren().addAll(positieLabel, positie);
         buttons.getChildren().addAll(btnWijzig, btnDelete, terugKnop);

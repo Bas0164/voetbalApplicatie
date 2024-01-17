@@ -17,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Base64;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class SpelersToevoegen {
 
@@ -73,6 +75,11 @@ public class SpelersToevoegen {
         Label aantalAssistsLabel = new Label("Aantal assists: "); // Label voor het aantal assists
         TextField aantalAssists = new TextField(); // Tekstinvoerveld voor het aantal assists
 
+        // ImageView voor het weergeven van de profielfoto
+        ImageView profielfotoImageView = new ImageView();
+        profielfotoImageView.setFitHeight(75); // Pas de hoogte aan zoals gewenst
+        profielfotoImageView.setFitWidth(75); // Pas de breedte aan zoals gewenst
+
         HBox profielfotoHbox = new HBox();
         Label labelProfielfoto = new Label("Profielfoto: "); // Label voor de profielfoto
         Button uploadProfielfoto = new Button("Upload"); // Knop om een afbeelding te uploaden
@@ -91,6 +98,11 @@ public class SpelersToevoegen {
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
+
+                // Laad de afbeelding in de ImageView
+                Image profielfotoImage = new Image("data:image/png;base64," + encodedString);
+                profielfotoImageView.setImage(profielfotoImage);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -190,7 +202,7 @@ public class SpelersToevoegen {
         nationaliteitHbox.getChildren().addAll(nationaliteitLabel, nationaliteit);
         aantalGoalsHbox.getChildren().addAll(aantalGoalsLabel, aantalGoals);
         aantalAssistsHbox.getChildren().addAll(aantalAssistsLabel, aantalAssists);
-        profielfotoHbox.getChildren().addAll(labelProfielfoto, uploadProfielfoto);
+        profielfotoHbox.getChildren().addAll(labelProfielfoto, uploadProfielfoto, profielfotoImageView);
         clubHbox.getChildren().addAll(clubLabel, club);
         positieHbox.getChildren().addAll(positieLabel, positie);
         buttons.getChildren().addAll(btnOpslaan, terugKnop);

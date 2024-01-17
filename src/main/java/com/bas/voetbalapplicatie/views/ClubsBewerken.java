@@ -21,6 +21,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Base64;
+import javafx.scene.image.ImageView;
 
 
 public class ClubsBewerken {
@@ -47,6 +48,9 @@ public class ClubsBewerken {
         TextField clubNaam = new TextField();
         clubNaam.setText(c.getClubNaam());
 
+        ImageView clubLogoImageView = new ImageView();
+        clubLogoImageView.setFitHeight(75); // Pas de hoogte aan zoals gewenst
+        clubLogoImageView.setFitWidth(75); // Pas de breedte aan zoals gewenst
         HBox logoHbox = new HBox();
         Label labelLogo = new Label("Logo:"); // Label voor het logo
         Button uploadLogo = new Button("Upload"); // Knop om een afbeelding te uploaden
@@ -61,6 +65,11 @@ public class ClubsBewerken {
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
+
+                // Laad de afbeelding in de ImageView
+                Image clubLogoImage = new Image("data:image/png;base64," + encodedString);
+                clubLogoImageView.setImage(clubLogoImage);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -149,7 +158,7 @@ public class ClubsBewerken {
 
         root.getChildren().addAll(clubNaamHbox, logoHbox, stadionHbox, buttons);
         clubNaamHbox.getChildren().addAll(clubNaamLabel, clubNaam);
-        logoHbox.getChildren().addAll(labelLogo, uploadLogo);
+        logoHbox.getChildren().addAll(labelLogo, uploadLogo, clubLogoImageView);
         stadionHbox.getChildren().addAll(stadionLabel, stadion);
         buttons.getChildren().addAll(btnWijzig, btnDelete, terugKnop);
     }
