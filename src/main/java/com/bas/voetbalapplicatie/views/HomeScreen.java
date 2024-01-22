@@ -1,6 +1,8 @@
 package com.bas.voetbalapplicatie.views;
 
 import com.bas.voetbalapplicatie.Application;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -8,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
 public class HomeScreen {
     private Scene scene;
@@ -30,6 +33,18 @@ public class HomeScreen {
         // Label met de naam van de applicatie
         Label applicatieNaam = new Label("Voetbal Applicatie");
         applicatieNaam.setId("applicatieNaam");
+
+        // Fade-in animatie voor de applicatieNaam label
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(4), applicatieNaam);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
+
+        // Beweeg naar beneden animatie voor de applicatieNaam label
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(3), applicatieNaam);
+        translateTransition.setFromY(-100);
+        translateTransition.setToY(0);
+        translateTransition.play();
 
         // Horizontale box (HBox) voor knoppen
         HBox buttons = new HBox(50);
