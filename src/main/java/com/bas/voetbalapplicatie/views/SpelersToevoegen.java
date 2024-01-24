@@ -23,6 +23,7 @@ import javafx.util.converter.IntegerStringConverter;
 
 public class SpelersToevoegen {
 
+    private Path selectedFile;
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
 
     public SpelersToevoegen() {
@@ -95,7 +96,7 @@ public class SpelersToevoegen {
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Afbeeldingsbestanden", "*.png", "*.jpg", "*.jpeg")
             );
-            Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
+            selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
@@ -160,10 +161,9 @@ public class SpelersToevoegen {
             String Snationaliteit = nationaliteit.getValue(); // Geselecteerde nationaliteit ophalen
             Integer IaantalGoals = Integer.parseInt(aantalGoals.getText()); //aantal goals ophalen
             Integer IaantalAssists = Integer.parseInt(aantalAssists.getText()); //aantal assists ophalen
-            String Sprofielfoto = encodedString; // Gecodeerde afbeeldingsstring ophalen
             String Sclub = club.getValue(); // Geselecteerde club ophalen
             String Spositie = positie.getValue(); // Geselecteerde positie ophalen
-            db.opslaanSpeler(SspelerNaam, Irugnummer, Snationaliteit, IaantalGoals, IaantalAssists, Sprofielfoto, Sclub, Spositie); // Opslaan van spelergegevens
+            db.opslaanSpeler(SspelerNaam, Irugnummer, Snationaliteit, IaantalGoals, IaantalAssists, selectedFile, Sclub, Spositie); // Opslaan van spelergegevens
             stage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);

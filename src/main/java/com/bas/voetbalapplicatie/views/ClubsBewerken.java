@@ -6,7 +6,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -26,11 +25,13 @@ import javafx.scene.image.ImageView;
 
 public class ClubsBewerken {
 
+    private Path selectedFile;
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
 
     public ClubsBewerken(Club c) {
 
         Stage stage = new Stage();
+        stage.setResizable(false); // Zorgen dat je het scherm niet kan aanpassen qua grootte
         VBox root = new VBox();
         root.setId("root");
         Scene scene = new Scene(root, 800, 600);
@@ -61,7 +62,7 @@ public class ClubsBewerken {
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Afbeeldingsbestanden", "*.png", "*.jpg", "*.jpeg")
             );
-            Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
+            selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string

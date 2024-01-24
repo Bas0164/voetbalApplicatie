@@ -1,5 +1,7 @@
 package com.bas.voetbalapplicatie.classes;
 
+import java.io.FileInputStream;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -68,7 +70,7 @@ public class Database {
         return lijstMetClubs;
     }
 
-    public void opslaanClub(String clubNaam, String logo, String stadionNaam) {
+    public void opslaanClub(String clubNaam, Path selectedFile, String stadionNaam) {
         // SQL-query om een nieuwe club toe te voegen met verwijzing naar het stadion via een subquery
         String query = "INSERT INTO club (clubnaam, logo, stadion) VALUES (?, ?, (SELECT stadionID FROM stadion WHERE stadionNaam = ?))";
 
@@ -76,8 +78,9 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             // Parameters invullen voor de PreparedStatement
-            preparedStatement.setString(1, clubNaam);    // Clubnaam
-            preparedStatement.setString(2, logo);        // Logo
+            preparedStatement.setString(1, clubNaam); // Clubnaam
+            FileInputStream fin = new FileInputStream(selectedFile.toString());
+            preparedStatement.setBinaryStream(2, fin); // Logo
             preparedStatement.setString(3, stadionNaam); // Stadionnaam
 
             // De query uitvoeren
@@ -85,6 +88,7 @@ public class Database {
             System.out.println("Club succesvol opgeslagen in de database!");
 
         } catch (Exception e) {
+            // Fouten afdrukken bij eventuele problemen
             e.printStackTrace();
         }
     }
@@ -218,8 +222,8 @@ public class Database {
         return lijstMetSpelers;
     }
 
-    public void opslaanSpeler(String spelerNaam, Integer rugnummer, String nationaliteit, Integer aantalGoals, Integer aantalAssists, String profielfoto, String club, String positie) {
-        // SQL-query om een nieuwe speler toe te voegen met verwijzing naar nationaliteit, club en positie via een subquerys
+    public void opslaanSpeler(String spelerNaam, Integer rugnummer, String nationaliteit, Integer aantalGoals, Integer aantalAssists, Path selectedFile, String club, String positie) {
+        // SQL-query om een nieuwe speler toe te voegen met verwijzing naar nationaliteit, club en positie via subqueries
         String query = "INSERT INTO speler (spelerNaam, rugnummer, nationaliteit, aantalGoals, aantalAssists, profielfoto, club, positie) VALUES (?, ?, (SELECT nationaliteitID FROM nationaliteit WHERE nationaliteit = ?), ?, ?, ?, (SELECT clubID FROM club WHERE clubNaam = ?), (SELECT positieID FROM positie WHERE positie = ?))";
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/voetbalApplicatie", "root", "");
@@ -231,7 +235,11 @@ public class Database {
             preparedStatement.setString(3, nationaliteit); // nationaliteit
             preparedStatement.setInt(4, aantalGoals); // aantalGoals
             preparedStatement.setInt(5, aantalAssists); // aantalAssists
-            preparedStatement.setString(6, profielfoto); // profielfoto
+
+            // Profielfoto toevoegen als binair stream
+            FileInputStream fin = new FileInputStream(selectedFile.toString());
+            preparedStatement.setBinaryStream(6, fin); // Profielfoto
+
             preparedStatement.setString(7, club); // club
             preparedStatement.setString(8, positie); // positie
 
@@ -240,6 +248,7 @@ public class Database {
             System.out.println("Speler succesvol opgeslagen in de database!");
 
         } catch (Exception e) {
+            // Fouten afdrukken bij eventuele problemen
             e.printStackTrace();
         }
     }

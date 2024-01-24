@@ -13,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -33,6 +32,7 @@ public class SpelersBewerken {
     public SpelersBewerken(Speler s) {
 
     Stage stage = new Stage();
+    stage.setResizable(false); // Zorgen dat je het scherm niet kan aanpassen qua grootte
     VBox root = new VBox();
         root.setId("root");
     Scene scene = new Scene(root, 1440, 800);

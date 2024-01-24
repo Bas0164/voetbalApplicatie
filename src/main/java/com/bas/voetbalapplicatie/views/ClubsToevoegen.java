@@ -24,11 +24,10 @@ import java.util.Base64;
 
 public class ClubsToevoegen {
 
+    private Path selectedFile;
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
     ImageView imageView; // ImageView om de afbeelding weer te geven
-
-
-    public ClubsToevoegen() {
+        public ClubsToevoegen() {
         Database db = new Database(); // Instantie van de Database-klasse
         Stage stage = new Stage(); // Het hoofdvenster van de applicatie
         VBox root = new VBox(); // Het hoofdlay-outpaneel
@@ -66,7 +65,7 @@ public class ClubsToevoegen {
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Afbeeldingsbestanden", "*.png", "*.jpg", "*.jpeg")
             );
-            Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
+             selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
             try {
                 String fileExtension = selectedFile.toString().toLowerCase();
                 if (fileExtension.endsWith(".png") || fileExtension.endsWith(".jpg") || fileExtension.endsWith(".jpeg")) {
@@ -113,11 +112,11 @@ public class ClubsToevoegen {
         Button btnOpslaan = new Button("Opslaan"); // Knop om de clubgegevens op te slaan
         btnOpslaan.setId("btnOpslaan");
         btnOpslaan.setOnAction(e -> {
+
             if (!clubNaam.getText().isEmpty() && encodedString != null && stadion.getValue() != null) {
             String SclubNaam = clubNaam.getText(); // Clubnaam ophalen
-            String Slogo = encodedString; // Gecodeerde afbeeldingsstring ophalen
             String selectedStadionNaam = stadion.getValue(); // Geselecteerde stadionnaam ophalen
-            db.opslaanClub(SclubNaam, Slogo, selectedStadionNaam); // Opslaan van clubgegevens
+            db.opslaanClub(SclubNaam, selectedFile, selectedStadionNaam); // Opslaan van clubgegevens
             stage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
