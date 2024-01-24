@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.util.Base64;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.converter.IntegerStringConverter;
 
 public class SpelersToevoegen {
 
@@ -45,7 +46,7 @@ public class SpelersToevoegen {
 
         HBox rugnummerHbox = new HBox();
         Label rugnummerLabel = new Label("Rugnummer: "); // Label voor het rugnummer
-        TextField rugnummer = new TextField(); // Tekstinvoerveld voor het rugnummer
+        TextField rugnummer = alleenNummerInvoer(2); // Tekstinvoerveld voor het rugnummer (met maximaal invoer van 2 nummers)
 
         HBox nationaliteitHbox = new HBox();
         Label nationaliteitLabel = new Label("Nationaliteit: "); // Label voor de nationaliteit
@@ -69,11 +70,11 @@ public class SpelersToevoegen {
 
         HBox aantalGoalsHbox = new HBox();
         Label aantalGoalsLabel = new Label("Aantal goals: "); // Label voor het aantal goals
-        TextField aantalGoals = new TextField(); // Tekstinvoerveld voor het aantal goals
+        TextField aantalGoals = alleenNummerInvoer(4); // Tekstinvoerveld voor het aantal goals (met maximaal invoer van 4 nummers)
 
         HBox aantalAssistsHbox = new HBox();
         Label aantalAssistsLabel = new Label("Aantal assists: "); // Label voor het aantal assists
-        TextField aantalAssists = new TextField(); // Tekstinvoerveld voor het aantal assists
+        TextField aantalAssists = alleenNummerInvoer(4); // Tekstinvoerveld voor het aantal assists (met maximaal invoer van 4 nummers)
 
         // ImageView voor het weergeven van de profielfoto
         ImageView profielfotoImageView = new ImageView();
@@ -206,5 +207,30 @@ public class SpelersToevoegen {
         clubHbox.getChildren().addAll(clubLabel, club);
         positieHbox.getChildren().addAll(positieLabel, positie);
         buttons.getChildren().addAll(btnOpslaan, terugKnop);
+    }
+
+    private TextField alleenNummerInvoer(int maxLength) {
+        TextField textField = new TextField();
+
+        // Maak een TextFormatter met een filter voor numerieke waarden en maximaal aantal cijfers
+        TextFormatter<Integer> formatter = new TextFormatter<>(
+                new IntegerStringConverter(),
+                null,
+                change -> {
+                    String newText = change.getControlNewText();
+
+                    // Controleer of de nieuwe tekst alleen cijfers bevat en niet langer is dan maxLength
+                    if (newText.matches("\\d*") && newText.length() <= maxLength) {
+                        return change;
+                    }
+
+                    return null;
+                }
+        );
+
+        // Koppel de TextFormatter aan het TextField
+        textField.setTextFormatter(formatter);
+
+        return textField;
     }
 }
