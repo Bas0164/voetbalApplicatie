@@ -78,9 +78,9 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             // Parameters invullen voor de PreparedStatement
-            preparedStatement.setString(1, clubNaam); // Clubnaam
+            preparedStatement.setString(1, clubNaam);    // Clubnaam
             FileInputStream fin = new FileInputStream(selectedFile.toString());
-            preparedStatement.setBinaryStream(2, fin); // Logo
+            preparedStatement.setBinaryStream(2, fin); //Logo
             preparedStatement.setString(3, stadionNaam); // Stadionnaam
 
             // De query uitvoeren
@@ -88,7 +88,6 @@ public class Database {
             System.out.println("Club succesvol opgeslagen in de database!");
 
         } catch (Exception e) {
-            // Fouten afdrukken bij eventuele problemen
             e.printStackTrace();
         }
     }

@@ -24,8 +24,6 @@ import javafx.scene.image.ImageView;
 
 
 public class ClubsBewerken {
-
-    private Path selectedFile;
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
 
     public ClubsBewerken(Club c) {
@@ -62,7 +60,7 @@ public class ClubsBewerken {
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Afbeeldingsbestanden", "*.png", "*.jpg", "*.jpeg")
             );
-            selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
+            Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
@@ -133,7 +131,7 @@ public class ClubsBewerken {
         Button btnWijzig = new Button("Wijzig");
         btnWijzig.setId("btnWijzig");
         btnWijzig.setOnAction(e -> {
-            if (!clubNaam.getText().isEmpty() && encodedString != null && stadion.getValue() != null) {
+            if (!clubNaam.getText().isEmpty() && stadion.getValue() != null) {
             c.setClubNaam(clubNaam.getText());
             c.setStadion(stadion.getValue());
             Database db = new Database();

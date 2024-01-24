@@ -223,7 +223,7 @@ public class SpelersBewerken {
     Button btnWijzig = new Button("Wijzig");
         btnWijzig.setId("btnWijzig");
         btnWijzig.setOnAction(e -> {
-            if (!spelerNaam.getText().isEmpty() && !rugnummer.getText().isEmpty() && nationaliteit.getValue() != null && !aantalGoals.getText().isEmpty() && !aantalAssists.getText().isEmpty() && encodedString != null && club.getValue() != null && positie.getValue() != null) {
+            if (!spelerNaam.getText().isEmpty() && !rugnummer.getText().isEmpty() && nationaliteit.getValue() != null && !aantalGoals.getText().isEmpty() && !aantalAssists.getText().isEmpty() && club.getValue() != null && positie.getValue() != null) {
                 s.setSpelerNaam(spelerNaam.getText());
             try {
                 int rugnummerValue = Integer.parseInt(rugnummer.getText());
