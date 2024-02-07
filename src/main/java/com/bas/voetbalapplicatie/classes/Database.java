@@ -1,6 +1,8 @@
 package com.bas.voetbalapplicatie.classes;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
@@ -79,8 +81,8 @@ public class Database {
 
             // Parameters invullen voor de PreparedStatement
             preparedStatement.setString(1, clubNaam);    // Clubnaam
-            FileInputStream fin = new FileInputStream(selectedFile.toString());
-            preparedStatement.setBinaryStream(2, fin); //Logo
+            FileInputStream fis = new FileInputStream(selectedFile.toString());
+            preparedStatement.setBinaryStream(2, fis); //Logo
             preparedStatement.setString(3, stadionNaam); // Stadionnaam
 
             // De query uitvoeren
@@ -92,27 +94,34 @@ public class Database {
         }
     }
 
-    public void bewerkClub(Club c) {
+    public void bewerkClub(Club c, Path selectedFile) {
 
         // Query met behulp van een prepared statement
         String query = "UPDATE club SET clubNaam = ?, logo = ?, stadion = ? WHERE clubID = ?";
 
         try (PreparedStatement preparedStatement = this.conn.prepareStatement(query)) {
-            // Parameters instellen voor het prepared statement
-            preparedStatement.setString(1, c.getClubNaam());
-            preparedStatement.setBlob(2, c.getLogo());
-            preparedStatement.setInt(3, getStadionID(c.getStadion()));
-            preparedStatement.setInt(4, c.getId());
+           //Parameters instellen voor het prepared statement
+           preparedStatement.setString(1, c.getClubNaam());
+           if (selectedFile != null) {
+               FileInputStream fis = new FileInputStream(selectedFile.toString());
+               preparedStatement.setBinaryStream(2, fis); // Logo
+           } else {
+               preparedStatement.setBlob(2, c.getLogo());
+           }
+           preparedStatement.setInt(3, getStadionID(c.getStadion()));
+           preparedStatement.setInt(4, c.getId());
 
             // De update uitvoeren
             preparedStatement.executeUpdate();
 
+            // De update uitvoeren
             System.out.println("Club succesvol bijgewerkt in de database!");
 
-        } catch (SQLException e) {
+        } catch (SQLException | FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public void verwijderClub(Club c){
 
@@ -252,7 +261,7 @@ public class Database {
         }
     }
 
-    public void bewerkSpeler(Speler s) {
+    public void bewerkSpeler(Speler s, Path selectedFile) {
 
         // Query met behulp van een prepared statement
         String query = "UPDATE speler SET spelerNaam = ?, rugnummer = ?, nationaliteit = ?, aantalGoals = ?, aantalAssists = ?, profielfoto = ?, club = ?, positie = ? WHERE spelerID = ?";
@@ -264,7 +273,12 @@ public class Database {
             preparedStatement.setInt(3, getNationaliteitID(s.getNationaliteit()));
             preparedStatement.setInt(4, s.getAantalGoals());
             preparedStatement.setInt(5, s.getAantalAssists());
-            preparedStatement.setBlob(6, s.getProfielfoto());
+            if (selectedFile != null) {
+                FileInputStream fis = new FileInputStream(selectedFile.toString());
+                preparedStatement.setBinaryStream(6, fis); // Logo
+            } else {
+                preparedStatement.setBlob(6, s.getProfielfoto());
+            }
             preparedStatement.setInt(7, getClubID(s.getClub()));
             preparedStatement.setInt(8, getPositieID(s.getPositie()));
             preparedStatement.setInt(9, s.getId());
@@ -274,7 +288,7 @@ public class Database {
 
             System.out.println("Speler succesvol bijgewerkt in de database!");
 
-        } catch (SQLException e) {
+        } catch (SQLException | FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,12 +1,31 @@
 #root {
-    -fx-background-color: #b5b5b5; /* Achtergrondkleur van de root (hoofd) van de scene */
+    -fx-background-image: url('file:/C:/Users/basde/Desktop/voetbalApplicatie/src/main/resources/com/bas/voetbalapplicatie/images/achtergrond.png'); /* Achtergrondafbeelding */
+    -fx-background-repeat: no-repeat; /* Geen herhaling van de achtergrondafbeelding */
+    -fx-background-size: cover; /* De achtergrondafbeelding bedekt de volledige achtergrond */
 }
 
+/* Stijl voor de TableView */
 #spelersTable {
-    -fx-background-color: transparent; /* Achtergrond van de tabel transparant maken */
-    -fx-font-weight: BOLD; /* Vetgedrukte tekst in de tabel */
-    -fx-pref-width: 1440; /* Voorkeursbreedte van de tabel */
-    -fx-pref-height: 700; /* Voorkeurshoogte van de tabel */
+    -fx-background-color: white; /* Achtergrondkleur van de tabel */
+    -fx-border-color: #ccc; /* Randkleur van de tabel */
+    -fx-border-width: 1px; /* Breedte van de rand van de tabel */
+    -fx-pref-height: 650; /* Hoogte van de tabel */
+}
+
+/* Stijl voor de rijen in de TableView */
+.table-row-cell {
+    -fx-background-color: #f4f4f4; /* Achtergrondkleur van de rijen */
+}
+
+/* Stijl voor de geselecteerde rij in de TableView */
+.table-row-cell:selected {
+    -fx-background-color: #d4d4d4; /* Achtergrondkleur van de geselecteerde rij */
+}
+
+/* Stijl voor de kolomkoppen in de TableView */
+.table-column-header {
+    -fx-background-color: #eaeaea; /* Achtergrondkleur van de kolomkoppen */
+    -fx-font-weight: bold; /* Vetgedrukte tekst voor de kolomkoppen */
 }
 
 .table-view .scroll-bar:horizontal {

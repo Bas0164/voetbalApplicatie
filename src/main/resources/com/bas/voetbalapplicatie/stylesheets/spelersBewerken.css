@@ -1,6 +1,7 @@
 #root {
-    -fx-background-color: #b5b5b5; /* Achtergrondkleur van de root (hoofd) van de scene */
-    -fx-font-weight: BOLD; /* Vetgedrukte tekst */
+    -fx-background-image: url('file:/C:/Users/basde/Desktop/voetbalApplicatie/src/main/resources/com/bas/voetbalapplicatie/images/achtergrond.png'); /* Achtergrondafbeelding */
+    -fx-background-repeat: no-repeat; /* Geen herhaling van de achtergrondafbeelding */
+    -fx-background-size: cover; /* De achtergrondafbeelding bedekt de volledige achtergrond */    -fx-font-weight: BOLD; /* Vetgedrukte tekst */
     -fx-font-size: 20; /* Lettergrootte */
 }
 

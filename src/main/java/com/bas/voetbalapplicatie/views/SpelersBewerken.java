@@ -25,7 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.converter.IntegerStringConverter;
 
 public class SpelersBewerken {
-
+    private Path selectedFile;
     String encodedString; // Variabele om de gecodeerde afbeeldingsstring op te slaan
     ImageView profielfotoImageView; // Voeg ImageView toe voor de profielfoto
 
@@ -104,7 +104,7 @@ public class SpelersBewerken {
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Afbeeldingsbestanden", "*.png", "*.jpg", "*.jpeg")
             );
-            Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
+            selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
             try {
                 byte[] fileContent = Files.readAllBytes(selectedFile);
                 encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
@@ -157,27 +157,6 @@ public class SpelersBewerken {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-    HBox logoHbox = new HBox();
-    Label labelLogo = new Label("Logo:"); // Label voor het logo
-    Button uploadLogo = new Button("Upload"); // Knop om een afbeelding te uploaden
-        uploadLogo.setId("uploadLogo");
-        uploadLogo.setOnAction(event -> {
-        FileChooser fileChooser = new FileChooser(); // Dialoogvenster voor bestandsselectie
-        fileChooser.setTitle("Selecteer Afbeelding");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Afbeeldingsbestanden", "*.png", "*.jpg", "*.jpeg")
-        );
-        Path selectedFile = fileChooser.showOpenDialog(stage).toPath(); // Geselecteerd bestand
-        try {
-            byte[] fileContent = Files.readAllBytes(selectedFile);
-            encodedString = Base64.getEncoder().encodeToString(fileContent); // Omzetten naar Base64-gecodeerde string
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    });
 
         VBox.setMargin(spelerNaamHbox, new javafx.geometry.Insets(100, 0, 30, 508));
         VBox.setMargin(rugnummerHbox, new javafx.geometry.Insets(0, 0, 30, 500));
@@ -249,7 +228,7 @@ public class SpelersBewerken {
             s.setClub(club.getValue());
         s.setPositie(positie.getValue());
         Database db = new Database();
-        db.bewerkSpeler(s);
+        db.bewerkSpeler(s, selectedFile);
         stage.close();
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
